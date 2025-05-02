@@ -1,0 +1,91 @@
+:root {
+  --custom-border: 1px solid #FC6C85;
+  --bg-default: #FC8EAC;
+  --color-default: #FC6C85;
+}
+
+#root {
+    max-width: 1920px;
+    margin: 0 auto;
+    background-color: var(--bg-default);
+    padding: 3rem 0;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color: #2B283A;
+    overflow: hidden scroll;
+}
+
+img {
+    width: 100%;
+}
+.logo {
+    width: 40px;
+}
+
+/*Font Color*/
+.text-gray {
+    color: #918E9B;
+}
+.text-pink {
+    color: var(--color-default);
+}
+/**/
+/*Buttons*/
+.btn-custom {
+    background-color: var(--bg-default);
+    color: #FFFFFF;
+}
+.btn-custom:hover {
+    background-color: #fff;
+    border: var(--custom-border);
+    color: var(--color-default);
+}
+.trans-smooth {
+    transition: all 0.5s ease-in-out;
+}
+.custom-border {
+    border: var(--custom-border) !important;
+}
+/**/
+/*Homepage Icons*/
+.activity-icon {
+    width: 50px;
+}
+.activity-icon.celebrate {
+    top: 2.5rem;
+    left: 2.5rem;
+}
+.activity-icon.cycling {
+    top: 11rem;
+    left: -2rem;
+    transform: rotate(-30deg);
+}
+.activity-icon.travel {
+    top: 3rem;
+    right: 0;
+    transform: rotate(-27deg);
+}
+.activity-icon.football {
+    top: 14rem;
+    right: 4rem;
+}
+.activity-icon.pet {
+    top: 12rem;
+    left: 8rem;
+}
+/**/
+/*Memory Entry*/
+.entry-card {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.img-small {
+    max-width: 15rem;
+}
+
+  
+  
