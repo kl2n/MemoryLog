@@ -19,11 +19,15 @@ body {
     overflow: hidden scroll;
 }
 
+/*Logo & Images*/
+.logo {
+    width: 40px;
+}
 img {
     width: 100%;
 }
-.logo {
-    width: 40px;
+.img-small {
+    max-width: 15rem;
 }
 
 /*Font Color*/
@@ -34,15 +38,26 @@ img {
     color: var(--color-default);
 }
 /**/
+
 /*Buttons*/
-.btn-custom {
+.btn-custom-default {
     background-color: var(--bg-default);
     color: #FFFFFF;
 }
-.btn-custom:hover {
+.btn-custom-default:hover {
     background-color: #fff;
     border: var(--custom-border);
     color: var(--color-default);
+}
+.btn-custom-secondary {
+    background-color: white;
+    color: var(--color-default);
+    border: var(--custom-border);
+    font-size: 0.85rem;
+}
+.btn-custom-secondary:hover {
+    background-color: #fc6c85;
+    color: white;
 }
 .trans-smooth {
     transition: all 0.5s ease-in-out;
@@ -51,6 +66,7 @@ img {
     border: var(--custom-border) !important;
 }
 /**/
+
 /*Homepage Icons*/
 .activity-icon {
     width: 50px;
@@ -78,14 +94,12 @@ img {
     left: 8rem;
 }
 /**/
+
 /*Memory Entry*/
 .entry-card {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.img-small {
-    max-width: 15rem;
-}
 
   
   

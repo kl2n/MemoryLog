@@ -1,9 +1,23 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 export default function MemoryForm({ categories, addEntry }) {
     const [heading, setHeading] = useState('');
     const [body, setBody] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+    const [currentId, setCurrentId] = useState(1);
+
+    // Load the current ID from localStorage on component mount
+    useEffect(() => {
+        const savedId  = localStorage.getItem('currentId');
+        if (savedId) {
+            setCurrentId(parseInt(savedId, 10));
+        }
+    }, [])
+
+    // Update the current ID in localStorage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('currentId', currentId); // Store the ID in localStorage
+    }, [currentId]);
 
     const headingHandler = (e) => {
         setHeading(e.target.value);
@@ -20,9 +34,10 @@ export default function MemoryForm({ categories, addEntry }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         if (heading.trim() !== "" && body.trim() !== "") {
             const newEntry = {
-                id: Date.now(),
+                id: currentId,
                 heading,
                 body,
                 category: selectedCategory,
@@ -30,6 +45,7 @@ export default function MemoryForm({ categories, addEntry }) {
 
             addEntry(newEntry);
             console.log(newEntry);
+            setCurrentId((prevId) => prevId+1);
             setHeading('');
             setBody('');
             setSelectedCategory(categories[0]);
@@ -46,9 +62,8 @@ export default function MemoryForm({ categories, addEntry }) {
                         className="form-control w-100 border-box mb-3 mt-2"
                         value={heading}
                         onChange={headingHandler}
-                        aria-live="polite"
                         placeholder="Enter heading"
-                        required={true} />
+                        required />
                 </label>
 
                 <br/>
@@ -60,9 +75,8 @@ export default function MemoryForm({ categories, addEntry }) {
                     rows="5"
                     value={body}
                     onChange={bodyHandler}
-                    aira-live="polite"
                     placeholder="Write your thoughts..."
-                    required={true} />
+                    required />
 
                 <br/>
 
@@ -85,7 +99,7 @@ export default function MemoryForm({ categories, addEntry }) {
 
                 <button
                     type="submit"
-                    className="btn btn-custom border-box w-100 submit"
+                    className="btn btn-custom-default border-box w-100 submit"
                     aria-label="save your entry">
                     Add Entry
                 </button>
