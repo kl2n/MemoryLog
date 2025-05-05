@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import categoriesData from './components/CategoryData';
 import NavBar from './components/NavBar';
 import MemoryForm from './components/MemoryForm';
@@ -11,8 +11,19 @@ export default function App() {
     const [entries, setEntries] = useState([]);
     const [isShown, setIsShown] = useState(false);
 
-    const addEntry = (entry) => {
-        setEntries((prev) => [entry, ...prev]);
+    // Load entries from localStorage when the app starts
+    useEffect(() => {
+        const savedEntries = JSON.parse(localStorage.getItem('entries'));
+        if (savedEntries) {
+            setEntries(savedEntries);
+        }
+    }, []);
+
+    const addEntry = (newEntry) => {
+        //setEntries((prev) => [entry, ...prev]);
+        const updatedEntries = [newEntry, ...entries];
+        setEntries(updatedEntries);
+        localStorage.setItem('entries', JSON.stringify(updatedEntries));
     };
 
     const toggleForm = () => {

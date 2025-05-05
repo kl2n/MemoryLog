@@ -14,9 +14,9 @@ const IntroText = ({ toggleForm }) => {
             Recording memorable moments is indeed a wonderful practice. It allows you to reflect on your thoughts, experiences, and emotions, while preserving memories and tracking personal growth. It's also an excellent tool for cultivating mindfulness and self-awareness.        </p>
         <button 
             type="button" 
-            className="btn btn-custom border-box trans-smooth"
+            className="btn btn-custom-default border-box trans-smooth"
             onClick={toggleForm}
-            aria-live="polite">
+            aria-expanded="true">
             Get Started
         </button>
     </section>

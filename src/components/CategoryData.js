@@ -1,4 +1,4 @@
-import girlIcon from './../images/diary1.png'
+import diaryIcon from './../images/diary1.png'
 import familyIcon from './../images/family.png'
 import friendsIcon from './../images/friends.png'
 import shoppingIcon from './../images/shopping.png'
@@ -10,8 +10,8 @@ export default [
         id: 1,
         title: "General",
         image: {
-            src: girlIcon,
-            alt: "A girl writing diary"
+            src: diaryIcon,
+            alt: "Diary Image"
         },
         color: "#FC8EAC"
     },
@@ -20,7 +20,7 @@ export default [
         title: "Family",
         image: {
             src: familyIcon,
-            alt: "Happy Family"
+            alt: "Family Image"
         },
         color: "#F5D7C2"
     },
@@ -29,7 +29,7 @@ export default [
         title: "Friends",
         image: {
             src: friendsIcon,
-            alt: "Friends"
+            alt: "Friends Image"
         },
         color: "#B0D0D3"
     },
@@ -38,7 +38,7 @@ export default [
         title: "Shopping",
         image: {
             src: shoppingIcon,
-            alt: "Couple Shopping "       
+            alt: "Shopping Image"
         },
         color: "#EFD2DC"
     },
@@ -47,7 +47,7 @@ export default [
         title: "Date",
         image: {
             src: coupleIcon,
-            alt: "Date"
+            alt: "Date Image"
         },
         color: "#D6CDEA"
     },
@@ -56,7 +56,7 @@ export default [
         title: "Activity",
         image: {
             src: activity,
-            alt: "Activity"
+            alt: "Activity Image"
         },
         color: "#C9D9C2"
     }
