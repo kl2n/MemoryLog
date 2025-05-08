@@ -1,29 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import categoriesData from './components/CategoryData';
 import NavBar from './components/NavBar';
+import Icons from "./components/Icons.jsx";
+import IntroText from "./components/IntroText.jsx";
 import MemoryForm from './components/MemoryForm';
 import MemoryEntry from './components/MemoryEntry';
-import IntroText from "./components/IntroText.jsx";
 import IconData from './components/IconData';
-import Icons from "./components/Icons.jsx";
+import categoriesData from './components/CategoryData';
+
 
 export default function App() {
     const [entries, setEntries] = useState([]);
+    const [currentId, setCurrentId] = useState(1);
     const [isShown, setIsShown] = useState(false);
 
-    // Load entries from localStorage when the app starts
+    // Load entries and Id from localStorage when the app starts/mount
     useEffect(() => {
         const savedEntries = JSON.parse(localStorage.getItem('entries'));
-        if (savedEntries) {
-            setEntries(savedEntries);
-        }
+        const saveId = localStorage.getItem('currentId');
+        if (savedEntries) setEntries(savedEntries);
+        if (saveId) setCurrentId(parseInt(saveId, 10));   
     }, []);
 
-    const addEntry = (newEntry) => {
-        //setEntries((prev) => [entry, ...prev]);
+    const addEntry = (entryData) => {
+        const newId = currentId + 1;
+        setCurrentId(newId);
+        const newEntry = {
+            ...entryData,
+            id: currentId
+        };
         const updatedEntries = [newEntry, ...entries];
         setEntries(updatedEntries);
-        localStorage.setItem('entries', JSON.stringify(updatedEntries));
+        localStorage.setItem("entries", JSON.stringify(updatedEntries));
+        localStorage.setItem("currentId", newId);
+    };
+
+    const deleteEntry = (entryId) => {
+        const filteredEntries = entries.filter(entry => entry.id !== entryId);
+        setEntries(filteredEntries);
+        localStorage.setItem("entries", JSON.stringify(filteredEntries));
     };
 
     const toggleForm = () => {
@@ -36,7 +50,9 @@ export default function App() {
             <Icons iconData={IconData} />
             <IntroText toggleForm={toggleForm} />
             { isShown && <MemoryForm categories={categoriesData} addEntry={addEntry}/> }
-            <MemoryEntry entries={entries} categories={categoriesData} />
+            <MemoryEntry entries={entries} categories={categoriesData} deleteEntry={deleteEntry} />
+
+
         </div>
     );
 }
