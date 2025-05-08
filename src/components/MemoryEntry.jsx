@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function MemoryEntry({ entries, categories }) {
+export default function MemoryEntry({ entries, categories, deleteEntry }) {
     const [expandedEntryIds, setExpandedEntryIds] = React.useState([]);
     const maxChars = 100;
 
@@ -49,6 +49,21 @@ export default function MemoryEntry({ entries, categories }) {
                                 )}
                             </p>
 
+                            <button
+                                type="button"
+                                className="btn btn-custom-secondary py-1 px-2 me-2 mb-3"
+                                onClick={()=>console.log("entryId", entry.id, entry.heading +" updated")}>
+                                Update
+                            </button>
+
+                            <button
+                                type="button"
+                                className="btn btn-custom-secondary py-1 px-2 mb-3"
+                                onClick={()=>deleteEntry(entry.id)}>
+                                Delete
+                            </button>
+
+                                <br/>
 
                             <small>{getTodayDate()}</small>
                         </div>

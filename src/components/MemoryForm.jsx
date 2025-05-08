@@ -1,23 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 export default function MemoryForm({ categories, addEntry }) {
     const [heading, setHeading] = useState('');
     const [body, setBody] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
-    const [currentId, setCurrentId] = useState(1);
-
-    // Load the current ID from localStorage on component mount
-    useEffect(() => {
-        const savedId  = localStorage.getItem('currentId');
-        if (savedId) {
-            setCurrentId(parseInt(savedId, 10));
-        }
-    }, [])
-
-    // Update the current ID in localStorage whenever it changes
-    useEffect(() => {
-        localStorage.setItem('currentId', currentId); // Store the ID in localStorage
-    }, [currentId]);
+    
 
     const headingHandler = (e) => {
         setHeading(e.target.value);
@@ -37,7 +24,6 @@ export default function MemoryForm({ categories, addEntry }) {
 
         if (heading.trim() !== "" && body.trim() !== "") {
             const newEntry = {
-                id: currentId,
                 heading,
                 body,
                 category: selectedCategory,
@@ -45,7 +31,6 @@ export default function MemoryForm({ categories, addEntry }) {
 
             addEntry(newEntry);
             console.log(newEntry);
-            setCurrentId((prevId) => prevId+1);
             setHeading('');
             setBody('');
             setSelectedCategory(categories[0]);
