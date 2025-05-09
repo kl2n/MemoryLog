@@ -34,6 +34,13 @@ export default function App() {
         localStorage.setItem("currentId", newId);
     };
 
+    const updateEntry = (entryData) => {
+        const updatedEntries = entries.map(entry =>
+            entry.id === entryData.id ? entryData : entry
+        );
+        setEntries(updatedEntries);
+    }
+
     const deleteEntry = (entryId) => {
         const filteredEntries = entries.filter(entry => entry.id !== entryId);
         setEntries(filteredEntries);
@@ -49,10 +56,12 @@ export default function App() {
             <NavBar />
             <Icons iconData={IconData} />
             <IntroText toggleForm={toggleForm} />
-            { isShown && <MemoryForm categories={categoriesData} addEntry={addEntry}/> }
-            <MemoryEntry entries={entries} categories={categoriesData} deleteEntry={deleteEntry} />
-
-
+            { isShown && <MemoryForm addEntry={addEntry} categories={categoriesData} /> }
+            <MemoryEntry
+                entries={entries}
+                categories={categoriesData}
+                deleteEntry={deleteEntry}
+                updateEntry={updateEntry} />
         </div>
     );
 }
