@@ -1,6 +1,6 @@
 import React from 'react'
 
-const IntroText = ({ toggleForm }) => {
+const IntroText = ({ startedToggleForm }) => {
   return (
     <section className="
         intro text-center
@@ -15,7 +15,7 @@ const IntroText = ({ toggleForm }) => {
         <button 
             type="button" 
             className="btn btn-custom-default border-box trans-smooth"
-            onClick={toggleForm}
+            onClick={startedToggleForm}
             aria-expanded="true">
             Get Started
         </button>

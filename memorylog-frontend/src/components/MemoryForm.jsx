@@ -26,7 +26,15 @@ export default function MemoryForm({ categories, addEntry }) {
             const newEntry = {
                 heading,
                 body,
-                category: selectedCategory,
+                category: {
+                    id: selectedCategory.id,
+                    title: selectedCategory.title,
+                    image: {
+                        src: selectedCategory.image.src,
+                        alt: selectedCategory.image.alt,
+                    },
+                    color: selectedCategory.color,
+                }
             };
 
             addEntry(newEntry);
@@ -40,7 +48,8 @@ export default function MemoryForm({ categories, addEntry }) {
     return (
         <section className="memory col-12 col-lg-6 mx-auto pb-5 trans-smooth">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="heading" className="w-100 mb-2">Heading:
+                <label htmlFor="heading" className="w-100 mb-2">
+                    Heading<span className="text-danger">*</span>
                     <input
                         type="text"
                         id="heading"
@@ -53,7 +62,9 @@ export default function MemoryForm({ categories, addEntry }) {
 
                 <br/>
 
-                <label htmlFor="description" className="mb-2">Description: </label>
+                <label htmlFor="description" className="mb-2">
+                    Description<span className="text-danger">*</span>
+                </label>
                 <textarea
                     id="description"
                     className="form-control border-box"

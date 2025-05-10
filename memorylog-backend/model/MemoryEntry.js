@@ -10,7 +10,28 @@ const MemoryEntrySchema = new Schema ({
         required: true,
     },
     category: {
-        type: Object,
+        type: {
+            id: {
+                type: Number,
+                required: true,
+            },
+            title: {
+                type: String,
+                required: true,
+            },
+            image: {
+                type: {
+                    src: String,
+                    alt: String,
+                },
+                required: true
+            },
+            color: {
+                type: String,
+                required: true,
+            }
+
+        }
         
     }
 }, { timestamps: true });
