@@ -40,6 +40,10 @@ img {
 /**/
 
 /*Buttons*/
+.btn {
+    font-size: 0.85rem;
+    min-width: 5rem;
+}
 .btn-custom-default {
     background-color: var(--bg-default);
     color: #FFFFFF;
@@ -53,7 +57,7 @@ img {
     background-color: white;
     color: var(--color-default);
     border: var(--custom-border);
-    font-size: 0.85rem;
+    min-width: unset;
 }
 .btn-custom-secondary:hover {
     background-color: #fc6c85;
