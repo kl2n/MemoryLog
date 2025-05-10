@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from 'date-fns';
 
 export default function MemoryEntry({ entries, categories, deleteEntry, updateEntry }) {
     const [expandedEntryIds, setExpandedEntryIds] = React.useState([]);
@@ -31,14 +32,6 @@ export default function MemoryEntry({ entries, categories, deleteEntry, updateEn
         ))
     };
 
-    const getTodayDate = () => {
-        const today = new Date();
-        const day = today.getDate().toString().padStart(2, "0");
-        const month = (today.getMonth() + 1).toString().padStart(2, "0");
-        const year = today.getFullYear();
-
-        return `${day}/${month}/${year}`;
-    };
     return (
         <section className="entry col-12 col-lg-6 mx-auto pb-5">
             {Array.isArray(entries) && entries.map((entry) => {
@@ -46,6 +39,7 @@ export default function MemoryEntry({ entries, categories, deleteEntry, updateEn
                 const isExpanded = expandedEntryIds.includes(entry._id);
                 const bodyExceedsMaxChars = entry.body && entry.body.length > maxChars;
                 const isEditMode = editId === entry._id;
+                const formattedDateTime = format(new Date(entry.createdAt), 'dd-MM-yyyy, hh:mm a');
 
                 return (
                     <div
@@ -114,7 +108,7 @@ export default function MemoryEntry({ entries, categories, deleteEntry, updateEn
 
                                 <br/>
 
-                            <small>{getTodayDate()}</small>
+                            <small>{formattedDateTime}</small>
                         </div>
 
                         <div className="col-4">
