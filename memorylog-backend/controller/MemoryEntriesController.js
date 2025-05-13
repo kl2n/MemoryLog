@@ -1,7 +1,7 @@
 var memoryentriesService = require('../service/MemoryEntriesService');
 
 async function getAllEntries (req, res, next) {
-    console.log('MemoryEntries Controller called');
+    //console.log('MemoryEntries Controller called');
     const entries = await memoryentriesService.getAllEntries();
     if(!entries) throw Error('No Entries Found');
     await res.status(200).json(entries);

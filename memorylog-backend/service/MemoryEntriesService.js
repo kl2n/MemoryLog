@@ -1,12 +1,11 @@
 let MemoryEntries = require('../model/MemoryEntry');
 
 const getAllEntries = async () => {
-    return MemoryEntries.find();
+    return MemoryEntries.find().sort({ createdAt: -1 });
 }
 
 const addEntries = async (entry) => {
     const newEntry = await MemoryEntries(entry);
-    console.log("save new entry");
     return newEntry.save();
 }
 
