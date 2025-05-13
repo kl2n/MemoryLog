@@ -16,4 +16,3 @@ A simple and elegant memory journaling app built with **React** and **Bootstrap*
 📝 Write and save memory entries
 📅 View past logs
 🧭 Responsive design with Bootstrap
-🔒 LocalStorage support
