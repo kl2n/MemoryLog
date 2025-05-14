@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
+import { entriesReducer } from "./reducers/entriesReducer.js";
 import NavBar from './components/NavBar';
 import Icons from "./components/Icons.jsx";
 import IntroText from "./components/IntroText.jsx";
@@ -8,7 +9,7 @@ import IconData from './components/IconData';
 import categoriesData from './components/CategoryData';
 
 export default function App() {
-    const [entries, setEntries] = useState([]);
+    const [entries, dispatch] = useReducer(entriesReducer, []);
     const [isShown, setIsShown] = useState(false);
 
     useEffect(() => {
@@ -17,12 +18,15 @@ export default function App() {
         fetch(`${baseUrl}/memoryentries`)
             .then(res => res.json())
             .then(data => {
-                setEntries(data);
+                dispatch({
+                    type: "SET_ENTRY",
+                    payload: data,
+                })
             })
             .catch(error => console.error('Error fetching entries:', error));
     }, []);
 
-    const addEntry = (newEntry) => {
+    const addEntryAction = (newEntry) => {
         const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
         fetch(`${baseUrl}/memoryentries`, {
@@ -34,12 +38,15 @@ export default function App() {
         })
             .then((res) => res.json())
             .then(savedEntry => {
-                setEntries(prevEntries => [savedEntry, ...prevEntries]);
+                dispatch({
+                    type: 'ADD_ENTRY',
+                    payload: savedEntry,
+                });
             })
             .catch(error => console.error('Error adding entries', error));
     };
 
-    const updateEntry = (entryData) => {
+    const updateEntryAction = (entryData) => {
         const baseUrl = import.meta.env.VITE_API_BASE_URL;
         fetch(`${baseUrl}/memoryentries/${entryData._id}`, {
             method: 'PUT',
@@ -50,23 +57,25 @@ export default function App() {
         })
         .then((res) => res.json())
         .then(updatedEntry => {
-            const updatedEntries = entries.map(entry =>
-                entry._id === updatedEntry._id ? updatedEntry : entry
-            );
-            setEntries(updatedEntries);
+            dispatch({
+                type: 'UPDATE_ENTRY',
+                payload: updatedEntry,
+            })
         })
         .catch(error => console.error('Error updating entries', error));
     };
 
-    const deleteEntry = (entryId) => {
+    const deleteEntryAction = (entryId) => {
         const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
         fetch(`${baseUrl}/memoryentries/${entryId}`, {
             method: 'DELETE',
         })
         .then(() => {
-            const filteredEntries = entries.filter(entry => entry._id !== entryId);
-            setEntries(filteredEntries);
+            dispatch({
+                type: 'DELETE_ENTRY',
+                payload: entryId,
+            })
         })
         .catch(error => console.error('Error deleting entries', error));
     };
@@ -80,12 +89,12 @@ export default function App() {
             <NavBar />
             <Icons iconData={IconData} />
             <IntroText startedToggleForm={startedToggleForm} />
-            { isShown && <MemoryForm addEntry={addEntry} categories={categoriesData} /> }
+            { isShown && <MemoryForm addEntry={addEntryAction} categories={categoriesData} /> }
             <MemoryEntry
                 entries={entries}
                 categories={categoriesData}
-                deleteEntry={deleteEntry}
-                updateEntry={updateEntry} />
+                deleteEntry={deleteEntryAction}
+                updateEntry={updateEntryAction} />
         </div>
     );
 }

@@ -1,11 +1,11 @@
-import React from 'react';
+import { useState } from 'react';
 import { format } from 'date-fns';
 
 export default function MemoryEntry({ entries, categories, deleteEntry, updateEntry }) {
-    const [expandedEntryIds, setExpandedEntryIds] = React.useState([]);
-    const [editId, setEditId] = React.useState(null);
-    const [editHeading, setEditHeading] = React.useState('');
-    const [editBody, setEditBody] = React.useState('');
+    const [expandedEntryIds, setExpandedEntryIds] = useState([]);
+    const [editId, setEditId] = useState(null);
+    const [editHeading, setEditHeading] = useState('');
+    const [editBody, setEditBody] = useState('');
     const maxChars = 100;
 
     const btnEditClick = (entry) => {
