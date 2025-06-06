@@ -44,7 +44,7 @@ npm run dev
 cd memorylog-backend
 npm install
 ```
--Create a ```bash .env``` file in the ```bash memorylog-backend``` directory with the following content:
+- Create a **.env** file in the **memorylog-backend** directory with the following content:
 ```bash
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/memorylog
@@ -54,7 +54,3 @@ npm install
 ```bash
 npm run dev
 ```
-
-
-
-
