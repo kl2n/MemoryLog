@@ -1,7 +1,7 @@
 
 const Icons = ({iconData}) => {
     return (
-        <section className="icons position-relative col-lg-6 mx-auto">
+        <div className="position-relative mx-auto">
             { iconData.map(item => (
                 <div key={item.id} className={`activity-icon ${item.image.alt} position-absolute`}>
                     <img
@@ -10,7 +10,7 @@ const Icons = ({iconData}) => {
                         alt={item.image.alt}    />
                 </div>
             )) }
-        </section>
+        </div>
     )
 }
 export default Icons;

@@ -46,7 +46,7 @@ export default function MemoryForm({ categories, addEntry }) {
     };
 
     return (
-        <section className="memory col-12 col-lg-6 mx-auto pb-5 trans-smooth">
+        <div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="heading" className="w-100 mb-2">
                     Heading<span className="text-danger">*</span>
@@ -100,6 +100,6 @@ export default function MemoryForm({ categories, addEntry }) {
                     Add Entry
                 </button>
             </form>
-        </section>
+        </div>
     );
 }

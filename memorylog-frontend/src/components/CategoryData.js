@@ -13,7 +13,7 @@ export default [
             src: diaryIcon,
             alt: "Diary Image"
         },
-        color: "#FC8EAC"
+        color: "#f7bece"
     },
     {
         id: 2,

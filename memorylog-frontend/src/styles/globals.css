@@ -1,22 +1,36 @@
 :root {
-  --custom-border: 1px solid #FC6C85;
   --bg-default: #FC8EAC;
-  --color-default: #FC6C85;
-}
-
-#root {
-    max-width: 1920px;
-    margin: 0 auto;
-    background-color: var(--bg-default);
-    padding: 3rem 0;
-    flex-direction: column;
-    min-height: 100vh;
+  --color-pink: #FC6C85;
+  --color-gray: #918E9B;
+  --color-black: #2B283A;
+  --custom-border: 1px solid var(--color-pink);
 }
 
 body {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    color: #2B283A;
+    font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-default);
+    padding: 3rem 0;
+    min-height: 100vh;
+    color: var(--color-black);
+    font-size: 16px;
     overflow: hidden scroll;
+}
+
+/*Fonts & Font Colors*/
+.intro h5 {
+    font-family: Caveat, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+.navbar {
+    font-family: PT Sans, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+.navbar-nav .nav-link.active {
+    color: var(--color-pink);
+}
+.text-gray {
+    color: var(--color-gray);
+}
+.text-pink {
+    color: var(--color-pink);
 }
 
 /*Logo & Images*/
@@ -30,19 +44,11 @@ img {
     max-width: 15rem;
 }
 
-/*Font Color*/
-.text-gray {
-    color: #918E9B;
-}
-.text-pink {
-    color: var(--color-default);
-}
-/**/
-
 /*Buttons*/
 .btn {
     font-size: 0.85rem;
     min-width: 5rem;
+    letter-spacing: 0.025em;
 }
 .btn-custom-default {
     background-color: var(--bg-default);
@@ -51,16 +57,16 @@ img {
 .btn-custom-default:hover {
     background-color: #fff;
     border: var(--custom-border);
-    color: var(--color-default);
+    color: var(--color-pink);
 }
 .btn-custom-secondary {
     background-color: white;
-    color: var(--color-default);
+    color: var(--color-pink);
     border: var(--custom-border);
     min-width: unset;
 }
 .btn-custom-secondary:hover {
-    background-color: #fc6c85;
+    background-color: var(--color-pink);
     color: white;
 }
 .trans-smooth {
@@ -69,35 +75,33 @@ img {
 .custom-border {
     border: var(--custom-border) !important;
 }
-/**/
 
 /*Homepage Icons*/
 .activity-icon {
     width: 50px;
 }
 .activity-icon.celebrate {
-    top: 2.5rem;
+    top: .5rem;
     left: 2.5rem;
 }
 .activity-icon.cycling {
-    top: 11rem;
+    top: 9rem;
     left: -2rem;
     transform: rotate(-30deg);
 }
 .activity-icon.travel {
-    top: 3rem;
+    top: 1rem;
     right: 0;
     transform: rotate(-27deg);
 }
 .activity-icon.football {
-    top: 14rem;
-    right: 4rem;
+    top: 16rem;
+    right: 6rem;
 }
 .activity-icon.pet {
-    top: 12rem;
+    top: 13rem;
     left: 8rem;
 }
-/**/
 
 /*Memory Entry*/
 .entry-card {

@@ -33,7 +33,7 @@ export default function MemoryEntry({ entries, categories, deleteEntry, updateEn
     };
 
     return (
-        <section className="entry col-12 col-lg-6 mx-auto pb-5">
+        <>
             {Array.isArray(entries) && entries.map((entry) => {
                 const category = categories.find(cat => cat.id === entry.category.id);
                 const isExpanded = expandedEntryIds.includes(entry._id);
@@ -45,8 +45,8 @@ export default function MemoryEntry({ entries, categories, deleteEntry, updateEn
                     <div
                         key={entry._id}
                         style={{backgroundColor: category ? category.color : 'white'}}
-                        className="entry-card p-3 mb-3 rounded d-flex flex-row align-items-center">
-                        <div className="col-8 pe-3">
+                            className="row entry-card mb-3 p-3 rounded align-items-center">
+                        <div className="col-12 col-lg-8">
                             { isEditMode ?
                             (
                                 <>
@@ -75,7 +75,7 @@ export default function MemoryEntry({ entries, categories, deleteEntry, updateEn
                                 </>
                             ):(
                                 <>
-                                    <h3>{entry.heading}</h3>
+                                    <h4 className="fw-normal">{entry.heading}</h4>
                                     <p className="text-break">
                                         {isExpanded || !bodyExceedsMaxChars
                                             ? entry.body
@@ -110,20 +110,21 @@ export default function MemoryEntry({ entries, categories, deleteEntry, updateEn
 
                             <small>{formattedDateTime}</small>
                         </div>
-
-                        <div className="col-4">
+                        <div className="col-12 col-lg-4 mx-auto text-center">
                             {category && (
-                                <div className="img-small">
+                                <div className="mx-auto d-block">
                                     <img
+                                        className="img-small"
                                         src={category.image.src}
                                         alt={category.image.alt}
                                     />
                                 </div>
                             )}
                         </div>
+
                     </div>
                 );
             })}
-        </section>
+        </>
     );
 }

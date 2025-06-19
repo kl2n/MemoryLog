@@ -8,11 +8,18 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Environment files
-.env
-.env.*
+memorylog-frontend/.env
+memorylog-frontend/.env.*
+memorylog-backend/.env
+memorylog-backend/.env.*
 
-node_modules/
-dist
+# Node modules
+memorylog-frontend/node_modules/
+memorylog-backend/node_modules/
+
+ #Build
+memorylog-frontend/dist
+
 dist-ssr
 *.local
 .vite/

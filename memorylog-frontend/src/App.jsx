@@ -1,34 +1,33 @@
-import React, { useState, useReducer, useEffect } from 'react';
-import { entriesReducer } from "./reducers/entriesReducer.js";
-import NavBar from './components/NavBar';
-import Icons from "./components/Icons.jsx";
-import IntroText from "./components/IntroText.jsx";
-import MemoryForm from './components/MemoryForm';
-import MemoryEntry from './components/MemoryEntry';
-import IconData from './components/IconData';
-import categoriesData from './components/CategoryData';
+import {useEffect, useReducer} from "react";
+import { Routes, Route } from 'react-router-dom';
+import Home from "./pages/Home.jsx";
+import EntryLists from "./pages/EntryLists.jsx";
+import {entriesReducer} from "./reducers/entriesReducer.js";
+import Navbar from "./components/Navbar.jsx";
+import categoriesData from "../src/components/CategoryData.js";
 
 export default function App() {
     const [entries, dispatch] = useReducer(entriesReducer, []);
-    const [isShown, setIsShown] = useState(false);
+    const menu = [
+        {to: '/', label: 'Home'},
+        {to: '/entry-lists', label: 'Entry Lists'},
+    ];
+
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
-        const baseUrl = import.meta.env.VITE_API_BASE_URL;
-
         fetch(`${baseUrl}/memoryentries`)
             .then(res => res.json())
             .then(data => {
                 dispatch({
                     type: "SET_ENTRY",
                     payload: data,
-                })
+                });
             })
             .catch(error => console.error('Error fetching entries:', error));
     }, []);
 
-    const addEntryAction = (newEntry) => {
-        const baseUrl = import.meta.env.VITE_API_BASE_URL;
-
+    const addEntry = (newEntry) => {
         fetch(`${baseUrl}/memoryentries`, {
             method: 'POST',
             headers: {
@@ -39,15 +38,14 @@ export default function App() {
             .then((res) => res.json())
             .then(savedEntry => {
                 dispatch({
-                    type: 'ADD_ENTRY',
+                    type: "ADD_ENTRY",
                     payload: savedEntry,
                 });
             })
             .catch(error => console.error('Error adding entries', error));
     };
 
-    const updateEntryAction = (entryData) => {
-        const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    const updateEntry = (entryData) => {
         fetch(`${baseUrl}/memoryentries/${entryData._id}`, {
             method: 'PUT',
             headers: {
@@ -55,46 +53,53 @@ export default function App() {
             },
             body: JSON.stringify(entryData),
         })
-        .then((res) => res.json())
-        .then(updatedEntry => {
-            dispatch({
-                type: 'UPDATE_ENTRY',
-                payload: updatedEntry,
+            .then((res) => res.json())
+            .then(updatedEntry => {
+                dispatch({
+                    type: "UPDATE_ENTRY",
+                    payload: updatedEntry,
+                });
             })
-        })
-        .catch(error => console.error('Error updating entries', error));
+            .catch(error => console.error('Error updating entries', error));
     };
 
-    const deleteEntryAction = (entryId) => {
-        const baseUrl = import.meta.env.VITE_API_BASE_URL;
-
+    const deleteEntry = (entryId) => {
         fetch(`${baseUrl}/memoryentries/${entryId}`, {
             method: 'DELETE',
         })
-        .then(() => {
-            dispatch({
-                type: 'DELETE_ENTRY',
-                payload: entryId,
+            .then(() => {
+                dispatch({
+                    type: "DELETE_ENTRY",
+                    payload: entryId,
+                });
             })
-        })
-        .catch(error => console.error('Error deleting entries', error));
+            .catch(error => console.error('Error deleting entries', error));
     };
 
-    const startedToggleForm = () => {
-        setIsShown(prev => !prev);
-    }
-
     return (
-        <div className="container-xl bg-white rounded-3 ps-4 pe-4">
-            <NavBar />
-            <Icons iconData={IconData} />
-            <IntroText startedToggleForm={startedToggleForm} />
-            { isShown && <MemoryForm addEntry={addEntryAction} categories={categoriesData} /> }
-            <MemoryEntry
-                entries={entries}
-                categories={categoriesData}
-                deleteEntry={deleteEntryAction}
-                updateEntry={updateEntryAction} />
+        <div className="container-xl bg-white rounded-3 shadow ps-4 pe-4">
+            <Navbar menu={menu} />
+            <Routes>
+                <Route path={"/"}
+                       element={
+                           <Home entries={entries}
+                                 categories={categoriesData}
+                                 addEntry={addEntry}
+                                 deleteEntry={deleteEntry}
+                                 updateEntry={updateEntry} />
+                       }
+                />
+                <Route path={"/entry-lists"}
+                       element={
+                           <EntryLists
+                               entries={entries}
+                               categories={categoriesData}
+                               deleteEntry={deleteEntry}
+                               updateEntry={updateEntry}/>
+                       }
+                />
+            </Routes>
         </div>
+
     );
 }

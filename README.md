@@ -1,18 +1,7 @@
 # 🧠 MemoryLog
 
-A simple and elegant memory journaling app built with **React** and **Bootstrap**. MemoryLog lets you capture your thoughts, feelings, and important events in a clean, responsive interface.
-
-## 🚧 Project Status
-
-> **Note:**  
-> This project is currently configured to run **only in a local development environment**.  
-> Deployment to a cloud platform has **not yet been set up**.
-
-
-## 🚀 Live Demo
-
-🌐 [View on GitHub Pages](https://kl2n.github.io/MemoryLog)
-
+- A memory journaling app built with the **MERN stack**, styled with Bootstrap and deployed to Render. 
+- MemoryLog lets you capture your thoughts, feelings, and important events in a clean, responsive interface.
 
 ## 🛠️ Tech Stack
 
@@ -20,13 +9,15 @@ A simple and elegant memory journaling app built with **React** and **Bootstrap*
 - 🎨 [Bootstrap 5](https://getbootstrap.com/) — Responsive UI components
 - ⚡ [Vite](https://vitejs.dev/) — Lightning-fast development and build tool
 - 🌐 [Express.js](https://expressjs.com/) — Backend web framework for Node.js
-- 🗃️ [MongoDB](https://www.mongodb.com/) — NoSQL database for storing entries 
+- ☁️ [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database) — Cloud NoSQL database
+- 🚀 [Render](https://render.com/) — Cloud platform for hosting the backend
+- 🌍 [Vercel](https://vercel.com/) — Hosting platform for the frontend
 
 
 ## 🤔 Features
-📝 Write and save memory entries
-📅 View past logs
-🧭 Responsive design with Bootstrap
+- 📝 Write and save memory entries
+- 📅 View past logs
+- 🧭 Responsive design with Bootstrap
 
 ## Installation & Getting Started
 **Frontend**
@@ -43,14 +34,5 @@ npm run dev
 ```bash
 cd memorylog-backend
 npm install
-```
-- Create a **.env** file in the **memorylog-backend** directory with the following content:
-```bash
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/memorylog
-npm install
-```
--Then start the backend server
-```bash
 npm run dev
 ```
