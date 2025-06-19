@@ -3,6 +3,11 @@
 - A memory journaling app built with the **MERN stack**, styled with Bootstrap and deployed to Render. 
 - MemoryLog lets you capture your thoughts, feelings, and important events in a clean, responsive interface.
 
+## Live Demo
+https://memory-log-eight.vercel.app/
+⚠️ Note: This deployed version is restricted to read-only functionality.
+To experience full functionality (adding/editing/deleting entries), please follow the steps in the **Local Installation & Getting Started** section below.
+
 ## 🛠️ Tech Stack
 
 - ⚛️ [React](https://react.dev/) — Frontend UI library
@@ -19,20 +24,41 @@
 - 📅 View past logs
 - 🧭 Responsive design with Bootstrap
 
-## Installation & Getting Started
+## Prerequisites Before You Start
+- Install [Node.js](https://nodejs.org/en)
+- Install [MongoDB](https://www.mongodb.com/try/download/community) and [MongoDB Compass](https://www.mongodb.com/try/download/compass)
+
+
+## Local Installation & Getting Started
 **Frontend**
-- Open terminal and run
+- Open your terminal and run
 ```bash
 cd memorylog-frontend
 npm install
+```
+- Create **.env** file inside memory-frontend folder with the following content
+```bash
+VITE_API_BASE_URL=http://localhost:5000/api
+```
+- And start the development server 
+```bash
 npm run dev
 ```
-- Then visit: ```http://localhost:5173 ```
+- Then visit the app in browser
+http://localhost:5173
 
 **Backend**
-- Open terminal and run
+- Open your terminal and run
 ```bash
 cd memorylog-backend
 npm install
+```
+- Create **.env** file inside memory-backend folder with the following content
+```bash
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/memorylog
+```
+- And start the backend server
+```bash
 npm run dev
 ```
