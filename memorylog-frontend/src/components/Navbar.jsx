@@ -1,6 +1,6 @@
 import React from "react";
 import logo from './../images/memlog.png'
-import {NavLink} from "react-router-dom";
+import {NavLink, Link} from "react-router-dom";
 
 export default function Navbar({menu}) {
     const items = Array.isArray(menu) ? menu : [];
@@ -9,10 +9,11 @@ export default function Navbar({menu}) {
         <>
             <nav className="navbar navbar-expand-md row align-items-center border-bottom border-light-subtle">
                 <div className="container-fluid">
-                    <div className="navbar-brand d-flex align-items-center gap-2 col">
+                    <Link to={"/"}
+                          className="navbar-brand d-flex align-items-center gap-2 col">
                         <img className="logo" src={logo} alt="logo" />
                         <span className="fs-4 text-pink mb-0">MemoryLog</span>
-                    </div>
+                    </Link>
                     <button
                         className="navbar-toggler"
                         type="button"
